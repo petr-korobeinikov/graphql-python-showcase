@@ -15,16 +15,16 @@ def all_projects() -> [Project]:
 def all_tasks() -> [Task]:
     return [
         Task(id=1, project_id=1, assignee=1, created_at=datetime.now(), title='Make foo', description=''),
-        Task(id=1, project_id=1, assignee=1, created_at=datetime.now(), title='Make faz', description=''),
-        Task(id=1, project_id=1, assignee=2, created_at=datetime.now(), title='Make fam', description=''),
+        Task(id=2, project_id=1, assignee=1, created_at=datetime.now(), title='Make faz', description=''),
+        Task(id=3, project_id=1, assignee=2, created_at=datetime.now(), title='Make fam', description=''),
 
-        Task(id=1, project_id=2, assignee=2, created_at=datetime.now(), title='Make boo', description=''),
-        Task(id=1, project_id=2, assignee=3, created_at=datetime.now(), title='Make bar', description=''),
-        Task(id=1, project_id=2, assignee=3, created_at=datetime.now(), title='Make baz', description=''),
+        Task(id=4, project_id=2, assignee=2, created_at=datetime.now(), title='Make boo', description=''),
+        Task(id=5, project_id=2, assignee=3, created_at=datetime.now(), title='Make bar', description=''),
+        Task(id=6, project_id=2, assignee=3, created_at=datetime.now(), title='Make baz', description=''),
 
-        Task(id=1, project_id=3, assignee=1, created_at=datetime.now(), title='Make qoo', description=''),
-        Task(id=1, project_id=3, assignee=2, created_at=datetime.now(), title='Make qar', description=''),
-        Task(id=1, project_id=3, assignee=3, created_at=datetime.now(), title='Make qaz', description=''),
+        Task(id=7, project_id=3, assignee=1, created_at=datetime.now(), title='Make qoo', description=''),
+        Task(id=8, project_id=3, assignee=2, created_at=datetime.now(), title='Make qar', description=''),
+        Task(id=9, project_id=3, assignee=3, created_at=datetime.now(), title='Make qaz', description=''),
     ]
 
 
@@ -42,3 +42,11 @@ def project_by_slug(slug: str) -> [Project]:
 
 def tasks_by_project_id(project_id: int) -> [Task]:
     return seq(all_tasks()).filter(lambda t: t.project_id == project_id)
+
+
+def task_by_id(id: int) -> [Task]:
+    return seq(all_tasks()).filter(lambda t: t.id == id)
+
+
+def person_by_id(id: int) -> [Person]:
+    return seq(all_people()).filter(lambda p: p.id == id)

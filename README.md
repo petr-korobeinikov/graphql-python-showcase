@@ -95,6 +95,27 @@ query projectWithTasksBySlug($slug: String!, $withTasks: Boolean!) {
 }
 ```
 
+### Find assignees
+
+```graphql
+query projectBySlug ($slug: String!) {
+    projectBySlug(slug: $slug) {
+        id
+        name
+        slug
+        tasks {
+            id
+            title
+            assignee {
+                id
+                name
+            }
+        }
+    }
+}
+
+```
+
 ## TODO
 
 Add:

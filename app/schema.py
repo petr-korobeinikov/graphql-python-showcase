@@ -3,9 +3,21 @@ import graphene
 from app import storage
 
 
+class Person(graphene.ObjectType):
+    id = graphene.ID(required=True)
+    name = graphene.String()
+
+
 class Task(graphene.ObjectType):
     id = graphene.ID(required=True)
     title = graphene.String(required=True)
+    person = graphene.Field(Person, name='assignee')
+
+    async def resolve_person(parent, info):
+        assignee_id = storage.task_by_id(parent.id).first().assignee
+        person = storage.person_by_id(assignee_id).first()
+
+        return Person(id=person.id, name=person.name)
 
 
 class Project(graphene.ObjectType):
