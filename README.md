@@ -13,6 +13,97 @@ Open `http://<your-docker-host>:9000/`.
 
 ![graphiql](graphiql.png)
 
+## An example set of queries
+
+### Find all projects
+
+```graphql
+query allProjects {
+    projects {
+        id
+        name
+        slug
+    }
+}
+```
+
+### Find all project names
+
+```graphql
+query allProjectNames {
+    projects {
+        name
+    }
+}
+```
+
+### Find all project with tasks
+
+```graphql
+query allProjectsWithTasks {
+    projects {
+        id
+        name
+        tasks {
+            id
+            title
+        }
+    }
+}
+```
+
+### Find project by slug (query variable demo)
+
+```graphql
+query projectBySlug($slug: String!) {
+    projectBySlug(slug: $slug) {
+        id
+        name
+        slug
+    }
+}
+```
+
+Provide a required `slug` variable:
+
+```json
+{
+    "slug": "proj1"
+}
+```
+
+### Using directive example
+
+```graphql
+query projectWithTasksBySlug($slug: String!, $withTasks: Boolean!) {
+    projectBySlug(slug: $slug) {
+        id
+        name
+        slug
+        tasks @include(if: $withTasks) {
+            id
+            title
+        }
+    }
+}
+```
+
+```json
+{
+    "slug": "proj1",
+    "withTasks": true
+}
+```
+
+## TODO
+
+Add:
+
+* Mutations
+* Pagination
+* Fragments
+* Auth
+
 ## Python + GraphQL quick start
 
 * [docs.graphene-python.org/en/latest/quickstart/](https://docs.graphene-python.org/en/latest/quickstart/)
