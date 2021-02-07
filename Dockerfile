@@ -13,5 +13,5 @@ FROM base
 
 COPY --from=builder /requirements /usr/local
 COPY app /app
-WORKDIR /app
-CMD ["python", "."]
+WORKDIR /
+CMD ["python", "-m", "app"]
