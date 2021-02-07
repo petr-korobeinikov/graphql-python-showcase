@@ -5,7 +5,7 @@
 ## Running
 
 ```shell
-docker build -t graphql-python-showcase .
+DOCKER_BUILDKIT=1 docker build -t graphql-python-showcase .
 docker run --rm -p 9000:9000 graphql-python-showcase
 ```
 
