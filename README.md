@@ -2,7 +2,7 @@
 
 ### Stop using REST, Post-JSON, and other stuff from 2k00.
 
-## Running
+## Running the project
 
 ```shell
 DOCKER_BUILDKIT=1 docker build -t graphql-python-showcase .
@@ -13,7 +13,7 @@ Open `http://<your-docker-host>:9000/`.
 
 ![graphiql](graphiql.png)
 
-## An example set of queries
+## Running queries
 
 ### Find all projects
 
@@ -113,7 +113,6 @@ query projectBySlug($slug: String!) {
         }
     }
 }
-
 ```
 
 ### Type introspection
@@ -139,11 +138,49 @@ query projectBySlugIntrospected($slug: String!) {
 }
 ```
 
+## Running mutations
+
+### Create a project
+
+todo: use variables
+
+```graphql
+mutation createProject {
+    createProject(name: "Project 4", slug: "prj4") {
+        project {
+            id
+            name
+            slug
+        }
+        ok
+    }
+}
+```
+
+### Reassign a task
+
+todo: use variables
+
+```graphql
+mutation reassignTask {
+    reassignTask(taskId: 1, assigneeId: 2) {
+        task {
+            id
+            assignee {
+                id
+                name
+            }
+        }
+        ok
+    }
+}
+```
+
 ## TODO
 
 Add:
 
-* Mutations
+* Enums (task status)
 * Pagination
 * Fragments
 * Auth
